@@ -38,5 +38,5 @@
     "include": [
         "*.ts"
     ],
-    "compileOnSave": false
+    "compileOnSave": true
 }
