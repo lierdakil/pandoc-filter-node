@@ -8,9 +8,9 @@ var Str = pandoc.Str;
 var Span = pandoc.Span;
 var attributes = pandoc.attributes;
 
-function action(type,value,format,meta) {
-	if (type === 'Str') {
-		var m = value.match(/%\{(.*)\}$/);
+function action(elt,format,meta) {
+	if (elt.t === 'Str') {
+		var m = elt.c.match(/%\{(.*)\}$/);
 		if (m) {
 			var field = m[1];
 			var result = meta[field] || {};

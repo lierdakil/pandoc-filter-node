@@ -13,14 +13,14 @@ var pandoc = require('../../../index');
 
 var incomment = false;
 
-function action(type,value,format,meta) {
-	if (type === 'RawBlock') {
-		if (value[0] === 'html') {
-			if (value[1].indexOf('<!-- BEGIN COMMENT -->') !== -1) {
+function action(elt,format,meta) {
+	if (elt.t === 'RawBlock') {
+		if (elt.c[0] === 'html') {
+			if (elt.c[1].indexOf('<!-- BEGIN COMMENT -->') !== -1) {
 				incomment = true;
 				return [];
 			}
-			else if (value[1].indexOf('<!-- END COMMENT -->') !== -1) {
+			else if (elt.c[1].indexOf('<!-- END COMMENT -->') !== -1) {
 				incomment = false;
 				return [];
 			}
