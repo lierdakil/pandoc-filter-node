@@ -24,6 +24,7 @@
     "should": "~3.3.1"
   },
   "dependencies": {
+    "@types/node": "^10.3.3",
     "get-stdin": "~0.1.0"
   }
 }
