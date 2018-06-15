@@ -1,5 +1,5 @@
 /*! pandoc-filter-node | (C) 2014 Mike Henderson <mvhenderson@tds.net> | License: MIT */
-export declare type FilterAction = <A extends EltNames>(key: A, value: EltMap[A], format: string, meta: any) => void | Tree | Promise<void | Tree>;
+export declare type FilterAction = (elt: EltTypeMap[EltNames], format: string, meta: any) => void | Tree | Promise<void | Tree>;
 export declare type AttrList = Array<[string, string]>;
 export declare type Attr = [string, Array<string>, AttrList];
 export declare type MathType = 'DisplayMath' | 'InlineMath';
@@ -90,7 +90,7 @@ export declare function filter(data: Tree & {
 }, action: FilterAction, format: Format): Promise<Tree>;
 export declare function walk(x: Tree, action: FilterAction, format: Format, meta: any): Promise<Tree>;
 export declare function walk(x: Tree[], action: FilterAction, format: Format, meta: any): Promise<Tree[]>;
-export declare function stringify(x: Tree): string;
+export declare function stringify(x: Tree): Promise<string>;
 export declare function attributes(attrs?: {
     classes?: string[];
 } & {

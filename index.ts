@@ -3,9 +3,8 @@
  * Typescript port of https://github.com/jgm/pandocfilters
  */
 
-export type FilterAction = <A extends EltNames>(
-  key: A,
-  value: EltMap[A],
+export type FilterAction = (
+  elt: EltTypeMap[EltNames],
   format: string,
   meta: any,
 ) => void | Tree | Promise<void | Tree>
@@ -213,7 +212,7 @@ export async function walk(
     var array: Tree[] = []
     for (const item of x) {
       if (typeof item === 'object' && item.t) {
-        var res = await action(item.t, item.c || [], format, meta)
+        var res = await action(item, format, meta)
         if (!res) {
           array.push(await walk(item, action, format, meta))
         } else if (Array.isArray(res)) {
@@ -244,19 +243,19 @@ export async function walk(
  * @param  {Object} x The object to walk
  * @return {String}   JSON string
  */
-export function stringify(x: Tree): string {
+export async function stringify(x: Tree): Promise<string> {
   if (!Array.isArray(x) && typeof x === 'object' && x.t === 'MetaString')
     return x.c
 
   var result: string[] = []
-  var go = function <T extends EltNames>(key: T, val: EltMap[T]) {
-    if (key === 'Str') result.push(val as EltMap['Str'])
-    else if (key === 'Code') result.push((val as EltMap['Code'])[1])
-    else if (key === 'Math') result.push((val as EltMap['Math'])[1])
-    else if (key === 'LineBreak') result.push(' ')
-    else if (key === 'Space') result.push(' ')
+  var go: FilterAction = function (x: EltTypeMap[EltNames]) {
+    if (x.t === 'Str') result.push(x.c)
+    else if (x.t === 'Code') result.push(x.c[1])
+    else if (x.t === 'Math') result.push(x.c[1])
+    else if (x.t === 'LineBreak') result.push(' ')
+    else if (x.t === 'Space') result.push(' ')
   }
-  walk(x, go, '', {})
+  await walk(x, go, '', {})
   return result.join('')
 }
 
