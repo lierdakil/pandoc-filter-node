@@ -69,7 +69,7 @@ export interface InlineEltMap {
   Space: undefined
   SoftBreak: undefined
   LineBreak: undefined
-  Math: [MathType, string]
+  Math: [{t: MathType}, string]
   RawInline: [Format, string]
   Link: [Attr, Array<Inline>, Target]
   Image: [Attr, Array<Inline>, Target]

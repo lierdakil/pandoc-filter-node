@@ -34,7 +34,9 @@ export interface InlineEltMap {
     Space: undefined;
     SoftBreak: undefined;
     LineBreak: undefined;
-    Math: [MathType, string];
+    Math: [{
+        t: MathType;
+    }, string];
     RawInline: [Format, string];
     Link: [Attr, Array<Inline>, Target];
     Image: [Attr, Array<Inline>, Target];
@@ -121,7 +123,9 @@ export declare const Cite: (a1: Citation[], a2: (Elt<"Str"> | Elt<"Emph"> | Elt<
 export declare const Code: (a1: [string, string[], [string, string][]], a2: string) => Elt<"Code">;
 export declare const Space: () => Elt<"Space">;
 export declare const LineBreak: () => Elt<"LineBreak">;
-export declare const Formula: (a1: MathType, a2: string) => Elt<"Math">;
+export declare const Formula: (a1: {
+    t: MathType;
+}, a2: string) => Elt<"Math">;
 export declare const RawInline: (a1: string, a2: string) => Elt<"RawInline">;
 export declare const Link: (a1: [string, string[], [string, string][]], a2: (Elt<"Str"> | Elt<"Emph"> | Elt<"Strong"> | Elt<"Strikeout"> | Elt<"Superscript"> | Elt<"Subscript"> | Elt<"SmallCaps"> | Elt<"Quoted"> | Elt<"Cite"> | Elt<"Code"> | Elt<"Space"> | Elt<"SoftBreak"> | Elt<"LineBreak"> | Elt<"Math"> | Elt<"RawInline"> | Elt<"Link"> | Elt<"Image"> | Elt<"Note"> | Elt<"Span">)[], a3: [string, string]) => Elt<"Link">;
 export declare const Image: (a1: [string, string[], [string, string][]], a2: (Elt<"Str"> | Elt<"Emph"> | Elt<"Strong"> | Elt<"Strikeout"> | Elt<"Superscript"> | Elt<"Subscript"> | Elt<"SmallCaps"> | Elt<"Quoted"> | Elt<"Cite"> | Elt<"Code"> | Elt<"Space"> | Elt<"SoftBreak"> | Elt<"LineBreak"> | Elt<"Math"> | Elt<"RawInline"> | Elt<"Link"> | Elt<"Image"> | Elt<"Note"> | Elt<"Span">)[], a3: [string, string]) => Elt<"Image">;
