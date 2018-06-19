@@ -5,7 +5,7 @@ Node.js port of the Python [pandocfilters][] for filtering with [Pandoc][]
 ## Install
 
 ```bash
-npm install -g pandoc-filter
+npm install -g pandoc-filter-promisified
 ```
 
 ## Example
@@ -15,11 +15,11 @@ npm install -g pandoc-filter
 
 // Pandoc filter to convert all text to uppercase
 
-var pandoc = require('pandoc-filter');
+var pandoc = require('pandoc-filter-promisified');
 var Str = pandoc.Str;
 
-function action(type,value,format,meta) {
-	if (type === 'Str') return Str(value.toUpperCase());
+async function action(elt,format,meta) {
+	if (elt.t === 'Str') return Str(elt.c.toUpperCase());
 }
 
 pandoc.stdio(action);
@@ -34,6 +34,9 @@ format. See [this issue](https://github.com/mvhenderson/pandoc-filter-node/issue
 
 Thanks to [John MacFarlane](https://github.com/jgm) for Pandoc.
 
+Thanks to [Mike Henderson](https://github.com/mvhenderson) for the [original
+version of pandoc-filter for Node][pandoc-filter-node].
+
 ## License
 
 MIT
@@ -41,3 +44,4 @@ MIT
 
 [Pandoc]: http://johnmacfarlane.net/pandoc
 [pandocfilters]: https://github.com/jgm/pandocfilters
+[pandoc-filter-node]: https://github.com/mvhenderson/pandoc-filter-node

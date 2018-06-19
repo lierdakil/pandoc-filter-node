@@ -1,13 +1,13 @@
 {
-  "name": "pandoc-filter",
-  "version": "0.1.8",
-  "description": "Pandoc filtering for Node.js",
+  "name": "pandoc-filter-promisified",
+  "version": "0.1.0",
+  "description": "Pandoc filtering for Node.js -- Promisified",
   "license": "MIT",
-  "repository": "mvhenderson/pandoc-filter-node",
-  "bugs": "https://github.com/mvhenderson/pandoc-filter-node/issues",
-  "author": "Mike Henderson",
+  "repository": "lierdakil/pandoc-filter-node",
+  "bugs": "https://github.com/lierdakil/pandoc-filter-node/issues",
+  "author": "Nikolay Yakimov",
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=7.0.0"
   },
   "main": "index.js",
   "types": "index.d.ts",
@@ -21,10 +21,10 @@
   ],
   "devDependencies": {
     "mocha": "*",
+    "@types/node": "^10.3.3",
     "should": "~3.3.1"
   },
   "dependencies": {
-    "@types/node": "^10.3.3",
     "get-stdin": "~0.1.0"
   }
 }
