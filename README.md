@@ -1,3 +1,5 @@
+# This project is deprecated. Use the [original pandoc-filter][pandoc-filter-node] >=v2 instead
+
 ## About
 
 Node.js port of the Python [pandocfilters][] for filtering with [Pandoc][]
